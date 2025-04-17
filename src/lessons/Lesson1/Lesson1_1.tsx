@@ -32,6 +32,8 @@ const Lesson1_1 = () => {
     setAge((prevAge) => prevAge + 1); // setAge((1) => 1 + 1)
     setAge((prevAge) => prevAge + 1); // setAge((2) => 2 + 1)
 
+    console.log("clicked");
+
     console.log(name);
 
   };
@@ -39,7 +41,7 @@ const Lesson1_1 = () => {
   return (
     <div>
       <input type="text" value={name} onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)} />
-      <button onClick={handleClick} className="border p-2 rounded-md bg-red-100">Add Age</button>
+      <button onClick={(e) => handleClick(e)} className="border p-2 rounded-md bg-red-100">Add Age</button>
       <p>You are {age}</p>
     </div>
   );
