@@ -1,9 +1,23 @@
 import React from "react";
-import { useFetchUser } from "./hooks/useFetchUser";
+import useSWR from "swr";
+import { cache } from "swr/_internal";
+// import { useFetchUser } from "./hooks/useFetchUser";
+
+// fetcher URLを取得してJSONで返す
+const fetcher = (url: string) => fetch(url).then(r => r.json());
 
 const Lesson2_3 = () => {
 
-  const { user, loading } = useFetchUser(3);
+  // customHooks
+  // const { user, loading } = useFetchUser(3);
+
+  // useSWR
+  const { data: user, isLoading: loading, error } = useSWR(
+    `https://jsonplaceholder.typicode.com/users/1`,
+    fetcher
+  );
+
+  console.log(cache);
 
   if (loading) {
     return <div>Loading...</div>;
