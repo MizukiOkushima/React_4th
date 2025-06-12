@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useToggle } from "./hooks/useToggle";
 
 const Lesson5_2 = () => {
@@ -24,8 +24,10 @@ const Lesson5_2 = () => {
 export default Lesson5_2;
 
 // eslint-disable-next-line react-refresh/only-export-components
-const Child = ({ toggle, on }: { toggle: () => void; on: boolean }) => {
+const Child = memo(({ toggle, on }: { toggle: () => void; on: boolean }) => {
   console.log("Child rendered");
+
+  // 重い処理
   let i = 0;
   while (i < 10000000) i++;
   return (
@@ -36,4 +38,4 @@ const Child = ({ toggle, on }: { toggle: () => void; on: boolean }) => {
       </button>
     </div>
   );
-};
+});
